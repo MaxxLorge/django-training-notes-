@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+</head>
+<body>
+        {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <p style="color: red">{{message}}</p>
+        {% else %}
+            <p style="color: green">{{message}}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+        <h1>Авторизация</h1>
+<form method="post">
+    {% csrf_token %}
+    {{auth_form.as_p}}
+    <button type="submit">Войти</button>
+</form>
+        <a href="{%url 'reg'%}">Регистрация</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>Пользователь: {{user.username}} | </span>
+<a href="{% url 'logout' %}">Выход</a>
+<h1 align="center">Notebook</h1>
+{% for note in notes %}
+<div style="border: 2px solid silver; padding: 3px; margin-bottom: 5px;">
+<h3 align="center">Заголовок: <i>{{note.title}}</i></h3>
+<div>Текст: {{note.content}}</div>
+<p>Создано: {{note.created_time}}</p>
+<p>Обновлено: {{note.updated_time}}</p>
+</div>
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+   {{ note_form.as_p }}
+    <input type="submit">
+</form>
+
+</body>
+</html>
